@@ -1,19 +1,17 @@
 package com.ulto.game.entity.enemy;
 
-import com.ulto.game.entity.Enemy;
+import com.ulto.game.Constants;
+import com.ulto.game.entity.drawer.Drawer;
+import com.ulto.game.entity.tile.GameTile;
 
 public class NormalEnemy extends Enemy {
-
-    @Override
-    public void update() {
-        // TODO Auto-generated method stub
-
+    public NormalEnemy(double x, double y, double time, GameTile cell) {
+        super(x, y, Constants.NORMAL_ENEMY_WIDTH, Constants.NORMAL_ENEMY_HEIGHT, Constants.NORMAL_ENEMY_HEALTH, time, cell);
     }
 
     @Override
     public void draw() {
         // TODO Auto-generated method stub
-
+        Drawer.draw(this);
     }
-    
 }

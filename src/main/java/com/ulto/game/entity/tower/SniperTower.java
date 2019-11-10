@@ -1,11 +1,10 @@
 package com.ulto.game.entity.tower;
 
-import com.ulto.game.entity.Tower;
+import com.ulto.game.GameField;
 
 public class SniperTower extends Tower {
-
     @Override
-    public void update() {
+    public void update(GameField field) {
         // TODO Auto-generated method stub
 
     }
@@ -15,5 +14,4 @@ public class SniperTower extends Tower {
         // TODO Auto-generated method stub
 
     }
-
 }

@@ -4,30 +4,29 @@ import java.io.FileNotFoundException;
 
 import com.ulto.game.entity.drawer.Drawer;
 
+import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 
-public class GameController {
-    private String name;
-    private GraphicsContext backGround;
-    private GraphicsContext foreGround;
-
+public class GameController extends AnimationTimer {
     private GameStage stage;
     private GameField field;
 
     public GameController(String name, GraphicsContext background, GraphicsContext foreground) {
-        this.name = name;
-        this.backGround = background;
-        this.foreGround = foreground;
-
-        Drawer.setGc(background, foreground);
+        Drawer.setGraphicsContexts(background, foreground);
 
         try {
             stage = new GameStage(name);
         }
         catch (FileNotFoundException e) {
-            System.out.println(e);
+            // TODO: handle or throws
         }
 
-        //field = new GameField(stage);
+        field = new GameField(stage);
+    }
+
+    @Override
+    public void handle(long now) {
+        field.update(now);
+        Drawer.batchDraw(field);
     }
 }

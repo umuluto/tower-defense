@@ -25,6 +25,7 @@ public final class Game extends Application {
         Scene scene = new Scene(root, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         stage.setScene(scene);
         stage.show();
+        controller.start();
     }
     
     public static void main(String[] args) {
