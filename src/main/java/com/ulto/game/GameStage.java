@@ -1,13 +1,18 @@
 package com.ulto.game;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.Scanner;
 
 import com.ulto.game.entity.GameEntity;
-import com.ulto.game.entity.tile.*;
+import com.ulto.game.entity.tile.GameTile;
+import com.ulto.game.entity.tile.Mountain;
+import com.ulto.game.entity.tile.Road;
+import com.ulto.game.entity.tile.Spawner;
+import com.ulto.game.entity.tile.Target;
 
 public class GameStage {
     private GameGrid grid = new GameGrid();

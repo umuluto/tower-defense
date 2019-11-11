@@ -1,7 +1,5 @@
 package com.ulto.game;
 
-import java.io.FileNotFoundException;
-
 import com.ulto.game.entity.drawer.Drawer;
 
 import javafx.animation.AnimationTimer;

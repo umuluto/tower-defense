@@ -1,6 +1,5 @@
 package com.ulto.game;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.ulto.game.entity.DestroyableEntity;
