@@ -20,7 +20,7 @@ public class GameField {
     }   
 
     public void update(long now) {
-        this.time = now / Constants.NPS;
+        time = Math.min(time + 0.016, now / Constants.NPS);
         
         int oldSize = entities.size();
         GameEntity e;
@@ -47,7 +47,7 @@ public class GameField {
         GameEntity newEntity = null;
         GameTile cell = grid.findCell(x, y);
         switch (type) {
-            case "n":
+            case "ne":
                 newEntity = new NormalEnemy(x, y, time, cell);
         }
 

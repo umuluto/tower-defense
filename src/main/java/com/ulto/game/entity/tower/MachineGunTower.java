@@ -8,10 +8,4 @@ public class MachineGunTower extends Tower {
         // TODO Auto-generated method stub
 
     }
-
-    @Override
-    public void update(GameField field) {
-        // TODO Auto-generated method stub
-
-    }
 }

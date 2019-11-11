@@ -21,34 +21,29 @@ public abstract class Enemy implements GameEntity, UpdatableEntity, DestroyableE
     private GameTile cell;
 
     protected void move(GameField field) {
-        double maxX = x + width, maxY = y + height;
-
         GameGrid grid = field.getGrid();
-        GameTile floorCell = grid.findCell(x, y);
-        
-        Road currentCell = (Road)floorCell;
 
-        if (floorCell == grid.findCell(maxX, maxY)) {
-            velocityX = currentCell.getDirection().getA();
-            velocityY = currentCell.getDirection().getB();
+        if (cell == grid.findCell(x + width, y + height)) {
+            velocityX = ((Road)cell).getDirection().getA();
+            velocityY = ((Road)cell).getDirection().getB();
         }
 
         double delta = field.getTime() - past;
-        delta = Math.min(0.016, delta);
         double dx = velocityX * delta * 200;
         double dy = velocityY * delta * 200;
-        
+
         x += dx; y += dy;
 
-        boolean hasCollision = currentCell.getEntities()
+        GameTile estimateCell = grid.findCell(x, y);
+        boolean hasCollision = estimateCell.getEntities()
                                             .stream()
                                             .anyMatch(e -> this.isCollided(e));
 
         if (hasCollision) {
             x -= dx; y -= dy;
         } else {
-            grid.reposition(this, currentCell);
-            cell = currentCell;
+            grid.reposition(this, estimateCell);
+            cell = estimateCell;
         }
     }
 

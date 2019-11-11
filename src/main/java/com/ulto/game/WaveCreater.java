@@ -9,7 +9,7 @@ public class WaveCreater {
 
     public static void createWave() {
         wave.clear();
-        wave.add(new Pair<>(12, "n"));
+        wave.add(new Pair<>(12, "ne"));
     }
 
     public static List<Pair<Integer, String>> getWave(double now) {
