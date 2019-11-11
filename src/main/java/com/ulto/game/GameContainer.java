@@ -21,7 +21,10 @@ public class GameContainer {
     private VBox sidebar;
 
     private GameController controller;
+
+    private boolean paused = false;
     
+    private Button pauseButton = new Button("Pause/Resume");
     private Button normalTowerButton = new Button("Normal Tower");
     private Button machineGunTowerButton = new Button("Machine Gun Tower");
     private Button sniperTowerButton = new Button("Sniper Tower");
@@ -36,7 +39,7 @@ public class GameContainer {
         canvasStackPane = new StackPane(backgroundCanvas, foregroundCanvas);
         borderPane = new BorderPane(canvasStackPane);
 
-        sidebar = new VBox(normalTowerButton, machineGunTowerButton, sniperTowerButton);
+        sidebar = new VBox(pauseButton, normalTowerButton, machineGunTowerButton, sniperTowerButton);
         Insets insets = new Insets(30);
         sidebar.setPadding(insets);
         sidebar.setAlignment(Pos.CENTER);
@@ -47,6 +50,16 @@ public class GameContainer {
         scene = new Scene(uiStackPane);
 
         controller = new GameController(name, backgroundContext, foregroundContext);
+        pauseButton.setOnAction(e -> {
+            if (paused) {
+                controller.start();
+                paused = false;
+            } else {
+                controller.stop();
+                paused = true;
+            }
+        });
+
         controller.start();
     }
 
