@@ -16,7 +16,7 @@ public final class Game extends Application {
         GraphicsContext gcBackground = background.getGraphicsContext2D();
         GraphicsContext gcForeground = foreground.getGraphicsContext2D();
 
-        String name = "src\\main\\resources\\level1.txt";
+        String name = "/level1.txt";
         GameController controller = new GameController(name, gcBackground, gcForeground);
 
         Group root = new Group();

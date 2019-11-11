@@ -14,12 +14,8 @@ public class GameController extends AnimationTimer {
     public GameController(String name, GraphicsContext background, GraphicsContext foreground) {
         Drawer.setGraphicsContexts(background, foreground);
 
-        try {
-            stage = new GameStage(name);
-        }
-        catch (FileNotFoundException e) {
-            // TODO: handle or throws
-        }
+        stage = new GameStage(name);
+        // TODO: handle exception
 
         field = new GameField(stage);
     }

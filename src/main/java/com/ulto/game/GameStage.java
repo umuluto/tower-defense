@@ -2,6 +2,8 @@ package com.ulto.game;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 import com.ulto.game.entity.GameEntity;
@@ -11,9 +13,9 @@ public class GameStage {
     private GameGrid grid = new GameGrid();
     private List<GameEntity> entities = new ArrayList<>();
 
-    public GameStage(String name) throws FileNotFoundException {
-        File level = new File(name);
-        Scanner in = new Scanner(level);
+    public GameStage(String name) {
+        InputStream stream = GameStage.class.getResourceAsStream(name);
+        Scanner in = new Scanner(stream);
         Pair<Integer, Integer> target = null;
 
         for (int i = 0; i < Constants.NUM_ROW; ++i) {

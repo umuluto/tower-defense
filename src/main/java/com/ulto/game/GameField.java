@@ -12,8 +12,8 @@ import com.ulto.game.entity.tile.GameTile;
 public class GameField {
     private double time;
 
-    private GameGrid grid = new GameGrid();
-    private List<GameEntity> entities = new ArrayList<>();
+    private GameGrid grid = null;
+    private List<GameEntity> entities = null;
 
     public GameField(GameStage stage) {
         this.grid = stage.getGrid();
