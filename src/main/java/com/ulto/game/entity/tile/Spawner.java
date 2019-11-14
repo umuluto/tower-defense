@@ -11,8 +11,8 @@ import com.ulto.game.entity.drawer.Drawer;
 
 public class Spawner extends Road implements UpdatableEntity {
     private List<Pair<Integer, String>> wave;
-    private double lastWaveTime = -999999999;
-    private double lastSpawnTime = -999999999;
+    private double lastWaveTime = Integer.MIN_VALUE;
+    private double lastSpawnTime = Integer.MIN_VALUE;
 
     public Spawner(int x, int y) {
         super(x, y);

@@ -1,10 +1,11 @@
 package com.ulto.game.entity.tile;
 
-import com.ulto.game.Pair;
 import com.ulto.game.entity.drawer.Drawer;
 
+import javafx.geometry.Point2D;
+
 public class Road extends GameTile {
-    protected Pair<Integer, Integer> direction;
+    protected Point2D direction;
     protected int distance;
 
     protected Road(int x, int y, int distance) {
@@ -21,11 +22,11 @@ public class Road extends GameTile {
         Drawer.draw(this);
     }
 
-    public Pair<Integer, Integer> getDirection() {
+    public Point2D getDirection() {
         return direction;
     }
 
-    public void setDirection(Pair<Integer, Integer> direction) {
+    public void setDirection(Point2D direction) {
         this.direction = direction;
     }
 

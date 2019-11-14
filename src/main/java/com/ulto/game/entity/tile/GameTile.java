@@ -5,29 +5,29 @@ import java.util.List;
 
 import com.ulto.game.entity.GameEntity;
 
+import javafx.geometry.Point2D;
+
 public abstract class GameTile implements GameEntity {
-    private final int x;
-    private final int y;
+    private final Point2D position;
     protected List<GameEntity> entities = new ArrayList<>();
 
     protected GameTile(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this(new Point2D(x, y));
     }
 
-	public int getX() {
-        return x;
+    protected GameTile(Point2D position) {
+        this.position = position;
     }
 
-    public int getY() {
-        return y;
+	public double getX() {
+        return position.getX();
+    }
+
+    public double getY() {
+        return position.getY();
     }
 
     public List<GameEntity> getEntities() {
         return entities;
-    }
-
-    public void setEntities(List<GameEntity> entities) {
-        this.entities = entities;
     }
 }

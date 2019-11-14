@@ -4,8 +4,13 @@ import com.ulto.game.Constants;
 import com.ulto.game.entity.tile.GameTile;
 
 public class SmallerEnemy extends Enemy{
-    protected SmallerEnemy(double x, double y, double time, GameTile cell) {
-        super(x, y, Constants.SMALLER_ENEMY_WIDTH, Constants.SMALLER_ENEMY_HEIGHT, Constants.SMALLER_ENEMY_HEALTH, time, cell);
+    public SmallerEnemy(double x, double y, GameTile cell) {
+        super(x, y,
+                Constants.SMALLER_ENEMY_WIDTH,
+                Constants.SMALLER_ENEMY_HEIGHT,
+                Constants.SMALLER_ENEMY_HEALTH,
+                Constants.SMALLER_ENEMY_SPEED,
+                cell);
     }
 
     @Override

@@ -8,56 +8,52 @@ import com.ulto.game.entity.UpdatableEntity;
 import com.ulto.game.entity.tile.GameTile;
 import com.ulto.game.entity.tile.Road;
 
+import javafx.geometry.Point2D;
+
 public abstract class Enemy implements GameEntity, UpdatableEntity, DestroyableEntity {
-    private double x;
-    private double y;
-    private double width;
-    private double height;
-    private double velocityX;
-    private double velocityY;
+    private Point2D position;
+    private int width;
+    private int height;
+
+    private int speed;
+    private Point2D direction;
 
     private int health;
-    private double past;
     private GameTile cell;
 
     protected void move(GameField field) {
         GameGrid grid = field.getGrid();
 
-        if (cell == grid.findCell(x + width, y + height)) {
-            velocityX = ((Road)cell).getDirection().getA();
-            velocityY = ((Road)cell).getDirection().getB();
+        if (cell == grid.getCell(position.getX() + width, position.getY() + height)) {
+            direction = ((Road)cell).getDirection();
         }
 
-        double delta = field.getTime() - past;
-        double dx = velocityX * delta * 200;
-        double dy = velocityY * delta * 200;
+        double delta = field.getDelta();
+        Point2D offset = direction.multiply(speed).multiply(delta);
+        Point2D predicted = position.add(offset);
 
-        x += dx; y += dy;
-
-        GameTile estimateCell = grid.findCell(x, y);
-        boolean hasCollision = estimateCell.getEntities()
+        GameTile predictedCell = grid.getCell(predicted);
+        boolean hasCollision = predictedCell.getEntities()
                                             .stream()
-                                            .anyMatch(e -> this.isCollided(e));
+                                            .anyMatch(e -> hasCollision(predicted, e));
 
-        if (hasCollision) {
-            x -= dx; y -= dy;
-        } else {
-            grid.reposition(this, estimateCell);
-            cell = estimateCell;
+        if (!hasCollision) {
+            position = predicted;
+            grid.changeCell(this, grid.getCell(predicted));
+            cell = grid.getCell(predicted);
         }
     }
 
-    public boolean isCollided(GameEntity entity) {
-        if (!(entity instanceof Enemy) || entity == this)
+	public boolean hasCollision(Point2D a, GameEntity b) {
+        if (!(b instanceof Enemy) || b == this)
             return false;
-        Enemy other = (Enemy)entity;
-        return this.x < other.x + other.width
-                && this.x + this.width > other.x
-                && this.y < other.y + other.height
-                && this.y + this.height > other.y;
+        Enemy other = (Enemy)b;
+        return a.getX() < other.getX() + other.width
+                && a.getX() + width > other.getX()
+                && a.getY() < other.getY() + other.height
+                && a.getY() + height > other.getY();
     }
 
-    @Override
     public void onAttack(int damage) {
         health -= damage;
     }
@@ -72,55 +68,97 @@ public abstract class Enemy implements GameEntity, UpdatableEntity, DestroyableE
         cell.getEntities().remove(this);
     }
 
+    public double cellWeight() {
+        return (getX() - cell.getX()) * direction.getX() + (getY() - cell.getY()) * direction.getY();
+    }
+
     @Override
     public void update(GameField field) {
         move(field);
-        past = field.getTime();
     }
-
-    protected Enemy(double x, double y, int width, int height, int health, double time, GameTile cell) {
-        this.x = x;
-        this.y = y;
+    
+    public Enemy(Point2D position, int width, int height, int speed, int health, GameTile cell) {
+        this.position = position;
         this.width = width;
         this.height = height;
+        this.speed = speed;
         this.health = health;
-        this.past = time;
         this.cell = cell;
     }
 
-    public double getX() {
-        return x;
+    public Enemy(double x, double y, int width, int height, int speed, int health, GameTile cell) {
+        this(new Point2D(x, y), width, height, speed, health, cell);
     }
 
-    public void setX(double x) {
-        this.x = x;
+    public Point2D getPosition() {
+        return position;
     }
 
-    public double getY() {
-        return y;
+    public void setPosition(Point2D position) {
+        this.position = position;
     }
 
-    public void setY(double y) {
-        this.y = y;
+    public Point2D getCenter() {
+        return new Point2D(getX() + width/2f, getY() + height/2f);
     }
 
-    public double getWidth() {
+    public int getWidth() {
         return width;
     }
 
-    public void setWidth(double width) {
+    public void setWidth(int width) {
         this.width = width;
     }
 
-    public double getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(double height) {
+    public void setHeight(int height) {
         this.height = height;
+    }
+
+    public Point2D getVelocity() {
+        return direction.multiply(speed);
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public Point2D getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Point2D direction) {
+        this.direction = direction;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 
     public GameTile getCell() {
         return cell;
+    }
+
+    public void setCell(GameTile cell) {
+        this.cell = cell;
+    }
+
+    public double getX() {
+        return position.getX();
+    }
+
+    public double getY() {
+        return position.getY();
     }
 }

@@ -14,6 +14,8 @@ import com.ulto.game.entity.tile.Road;
 import com.ulto.game.entity.tile.Spawner;
 import com.ulto.game.entity.tile.Target;
 
+import javafx.geometry.Point2D;
+
 public class GameStage {
     private GameGrid grid = new GameGrid();
     private List<GameEntity> entities = new ArrayList<>();
@@ -83,7 +85,7 @@ public class GameStage {
             for (int k = 0; k < 4; ++k) {
                 u = i + di[k];
                 v = j + dj[k];
-                if (!inGrid(u, v) || grid.getCell(u, v) instanceof Mountain) continue;
+                if (!GameGrid.inGrid(u, v) || grid.getCell(u, v) instanceof Mountain) continue;
                 otherCell = (Road)grid.getCell(u, v);
                 if (otherCell.getDistance() == Integer.MAX_VALUE) {
                     queue.add(new Pair<>(u, v));
@@ -91,14 +93,10 @@ public class GameStage {
                 }
                 if (otherCell.getDistance() < currentCell.getDistance()) {
                     currentCell.setDistance(otherCell.getDistance() + 1);
-                    currentCell.setDirection(new Pair<>(v - j, u - i));
+                    currentCell.setDirection(new Point2D(v - j, u - i));
                 }
             }
         }
-    }
-
-    private static boolean inGrid(int i, int j) {
-        return 0 <= i && i < Constants.NUM_ROW && 0 <= j && j < Constants.NUM_COL;
     }
 
     public GameGrid getGrid() {

@@ -22,6 +22,7 @@ public class GameContainer {
 
     private GameController controller;
 
+    private String nextSpawn;
     private boolean paused = false;
     
     private Button pauseButton = new Button("Pause/Resume");
@@ -60,7 +61,22 @@ public class GameContainer {
             }
         });
 
+        foregroundCanvas.setDisable(true);
+        foregroundCanvas.setOnMouseClicked(e -> {
+            controller.onBuildRequest(nextSpawn, e.getX(), e.getY());
+            toggleFCanvasClick();
+        });
+
+        normalTowerButton.setOnAction(e -> {
+            nextSpawn = "nt";
+            toggleFCanvasClick();
+        });
+
         controller.start();
+    }
+
+    private void toggleFCanvasClick() {
+        foregroundCanvas.setDisable(!foregroundCanvas.isDisable());
     }
 
     public Scene getScene() {

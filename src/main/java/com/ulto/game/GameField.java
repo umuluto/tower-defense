@@ -7,9 +7,12 @@ import com.ulto.game.entity.GameEntity;
 import com.ulto.game.entity.UpdatableEntity;
 import com.ulto.game.entity.enemy.NormalEnemy;
 import com.ulto.game.entity.tile.GameTile;
+import com.ulto.game.entity.tower.NormalTower;
 
 public class GameField {
+    // private long debugTime = 0;
     private double time;
+    private double delta;
 
     private GameGrid grid = null;
     private List<GameEntity> entities = null;
@@ -20,7 +23,11 @@ public class GameField {
     }   
 
     public void update(long now) {
-        time = Math.min(time + 0.016, now / Constants.NPS);
+        // System.out.println(now - debugTime);
+        // debugTime = now;
+        double newTime = Math.min(time + 0.016, now / Constants.NPS);
+        delta = newTime - time;
+        time = newTime;
         
         int oldSize = entities.size();
         GameEntity e;
@@ -45,10 +52,14 @@ public class GameField {
 
     public void spawn(String type, double x, double y) {
         GameEntity newEntity = null;
-        GameTile cell = grid.findCell(x, y);
+        GameTile cell = grid.getCell(x, y);
         switch (type) {
             case "ne":
-                newEntity = new NormalEnemy(x, y, time, cell);
+                newEntity = new NormalEnemy(x, y, cell);
+                break;
+            case "nt":
+                newEntity = new NormalTower(x, y);
+                break;
         }
 
         entities.add(newEntity);
@@ -66,4 +77,8 @@ public class GameField {
     public List<GameEntity> getEntities() {
         return entities;
     }
+
+	public double getDelta() {
+		return delta;
+	}
 }
