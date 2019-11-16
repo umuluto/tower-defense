@@ -53,9 +53,9 @@ public class Drawer {
         background.setFill(Color.GRAY);
         background.fillRect(road.getX(), road.getY(), Constants.TILE_SIZE, Constants.TILE_SIZE);
 
-        background.setFill(Color.BLACK);
-        Integer distance = road.getDistance();
-        background.fillText(distance.toString(), road.getX(), road.getY() + Constants.TILE_SIZE);
+//        background.setFill(Color.BLACK);
+//        Integer distance = road.getDistance();
+//        background.fillText(distance.toString(), road.getX(), road.getY() + Constants.TILE_SIZE);
     }
 
     public static void draw(Target target) {

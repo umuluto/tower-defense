@@ -44,7 +44,7 @@ public abstract class Enemy implements GameEntity, UpdatableEntity, DestroyableE
         }
     }
 
-	public boolean hasCollision(Point2D a, GameEntity b) {
+    public boolean hasCollision(Point2D a, GameEntity b) {
         if (!(b instanceof Enemy) || b == this)
             return false;
         Enemy other = (Enemy)b;
