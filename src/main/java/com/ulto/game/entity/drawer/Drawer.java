@@ -11,11 +11,19 @@ import com.ulto.game.entity.tile.Spawner;
 import com.ulto.game.entity.tile.Target;
 import com.ulto.game.entity.tower.NormalTower;
 
+import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+
+import java.io.InputStream;
+
 public class Drawer {
-    private static GraphicsContext background;   
+    private static GraphicsContext background;
     private static GraphicsContext foreground;
 
     public static void batchDraw(GameField field) {
@@ -45,10 +53,10 @@ public class Drawer {
     }
 
     public static void draw(Mountain mountain) {
-        background.setFill(Color.CHOCOLATE);
-        background.fillRect(mountain.getX(), mountain.getY(), Constants.TILE_SIZE, Constants.TILE_SIZE);
+        //background.setFill(Color.CHOCOLATE);
+        //background.fillRect(mountain.getX(), mountain.getY(), Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
- 
+
     public static void draw(Road road) {
         background.setFill(Color.GRAY);
         background.fillRect(road.getX(), road.getY(), Constants.TILE_SIZE, Constants.TILE_SIZE);
@@ -70,7 +78,7 @@ public class Drawer {
     public static void draw(Spawner spawner) {
         background.setFill(Color.RED);
         background.fillRect(spawner.getX(), spawner.getY(), Constants.TILE_SIZE, Constants.TILE_SIZE);
-        
+
         // background.setFill(Color.GREEN);
         // Integer distance = spawner.getDistance();
         // background.fillText(distance.toString(), spawner.getX(), spawner.getY() + Constants.TILE_SIZE);
@@ -85,7 +93,7 @@ public class Drawer {
         foreground.setFill(Color.PURPLE);
         foreground.fillRect(normalTower.getX(), normalTower.getY(), Constants.TOWER_SIZE, Constants.TOWER_SIZE);
     }
-    
+
     public static void draw(Bullet bullet) {
         foreground.setFill(Color.BLACK);
         foreground.fillRect(bullet.getX(), bullet.getY(), Constants.BULLET_SIZE, Constants.BULLET_SIZE);

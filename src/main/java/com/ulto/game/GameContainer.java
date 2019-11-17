@@ -17,19 +17,19 @@ public class GameContainer {
     private BorderPane borderPane;
     private StackPane uiStackPane;
     private StackPane canvasStackPane;
-    
+
     private VBox sidebar;
 
     private GameController controller;
 
     private String nextSpawn;
     private boolean paused = false;
-    
+
     private Button pauseButton = new Button("Pause/Resume");
     private Button normalTowerButton = new Button("Normal Tower");
     private Button machineGunTowerButton = new Button("Machine Gun Tower");
     private Button sniperTowerButton = new Button("Sniper Tower");
-    
+
     private Canvas backgroundCanvas = new Canvas(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
     private Canvas foregroundCanvas = new Canvas(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
