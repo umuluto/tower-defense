@@ -16,6 +16,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 /**
@@ -30,6 +32,8 @@ public class GameWindow extends BorderPane {
     @FXML
     private Canvas foreground;
     @FXML
+    private StackPane canvasStack;
+    @FXML
     private Text health;
     @FXML
     private Text gold;
@@ -43,6 +47,8 @@ public class GameWindow extends BorderPane {
     private Button sell_button;
     @FXML
     private Button pause_button;
+    @FXML
+    private VBox sidebar;
     
     private String towerType;
     
@@ -70,8 +76,8 @@ public class GameWindow extends BorderPane {
 
     @FXML
     private void onNormalBuild(ActionEvent event) {
-        towerType = "nt";
-        toggleForegroundClick();
+        towerType = "NormalTower";
+        foreground.setDisable(false);
     }
 
     @FXML
@@ -88,12 +94,19 @@ public class GameWindow extends BorderPane {
 
     @FXML
     private void onPause(ActionEvent event) {
+        sidebar.setDisable(true);
+        foreground.setDisable(true);
+        canvasStack.getChildren().add(new PauseMenu(this));
         controller.stop();
     }
     
     @FXML
     private void onForegroundClick(MouseEvent e) {
         controller.onBuildRequest(towerType, e.getX(), e.getY());
+    }
+    
+    public void toMainMenu() {
+        game.toMainMenu();
     }
     
     public void setController(GameController controller) {
@@ -108,7 +121,20 @@ public class GameWindow extends BorderPane {
         return foreground.getGraphicsContext2D();
     }
     
-    private void toggleForegroundClick() {
-        foreground.setDisable(!foreground.isDisable());
+    public void setHealth(int health) {
+        String text = String.valueOf(health);
+        this.health.setText(text);
+    }
+    
+    public void setGold(int gold) {
+        String text = String.valueOf(gold);
+        this.gold.setText(text);
+    }
+    
+    public void resumeGame() {
+        canvasStack.getChildren().remove(2);
+        sidebar.setDisable(false);
+        foreground.setDisable(false);
+        controller.start();
     }
 }

@@ -11,6 +11,9 @@ import com.ulto.game.entity.tower.NormalTower;
 
 public class GameField {
     // private long debugTime = 0;
+    private int health = Constants.STARTING_HEALTH;
+    private int gold = Constants.STARTING_GOLD;
+    
     private double time;
     private double delta;
 
@@ -43,7 +46,7 @@ public class GameField {
             if (e instanceof DestroyableEntity) {
                 de = (DestroyableEntity)e;
                 if (de.isDestroyed()) {
-                    de.onDestroy();
+                    de.onDestroy(this);
                     entities.remove(i--);
                 }
             }
@@ -54,10 +57,10 @@ public class GameField {
         GameEntity newEntity = null;
         GameTile cell = grid.getCell(x, y);
         switch (type) {
-            case "ne":
-                newEntity = new NormalEnemy(x, y, cell);
+            case "NormalEnemy":
+                newEntity = new NormalEnemy(x, y);
                 break;
-            case "nt":
+            case "NormalTower":
                 newEntity = new NormalTower(x, y);
                 break;
         }
@@ -78,7 +81,26 @@ public class GameField {
         return entities;
     }
 
-	public double getDelta() {
-		return delta;
-	}
+    public double getDelta() {
+            return delta;
+    }
+    
+    public int getHealth() {
+        return health;
+    }
+    
+    public void takeDamage(int damage) {
+        health = Math.max(health - damage, 0);
+    }
+    
+    public int getGold() {
+        return gold;
+    }
+    
+    public boolean spendGold(int amount) {
+        if (amount > gold)
+            return false;
+        gold -= amount;
+        return true;
+    }
 }

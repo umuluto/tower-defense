@@ -12,7 +12,6 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -61,14 +60,17 @@ public class LevelSelect extends BorderPane {
 
     @FXML
     private void startLevel2(ActionEvent event) {
+        game.setScene(startLevel("/map/level2.txt"));
     }
 
     @FXML
     private void startLevel3(ActionEvent event) {
+        game.setScene(startLevel("/map/level3.txt"));
     }
 
     @FXML
     private void startLevel4(ActionEvent event) {
+        game.setScene(startLevel("/map/level4.txt"));
     }
     
     public void setGame(Game game) {
