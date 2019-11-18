@@ -31,7 +31,7 @@ public class GameGrid {
     }
 
     public void changeCell(Enemy e, GameTile cell) {
-        e.getCell().getEntities().remove(e);
+        getCell(e.getPosition()).getEntities().remove(e);
         cell.getEntities().add(e);
     }
 

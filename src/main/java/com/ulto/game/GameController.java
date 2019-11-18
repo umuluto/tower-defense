@@ -22,6 +22,9 @@ public class GameController extends AnimationTimer {
     public void handle(long now) {
         field.update(now);
         Drawer.batchDraw(field);
+        
+        gameWindow.setHealth(field.getHealth());
+        gameWindow.setGold(field.getGold());
     }
     
     public void onBuildRequest(String type, double x, double y) {

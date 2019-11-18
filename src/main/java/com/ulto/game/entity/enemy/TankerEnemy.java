@@ -4,13 +4,12 @@ import com.ulto.game.Constants;
 import com.ulto.game.entity.tile.GameTile;
 
 public class TankerEnemy extends Enemy {
-    public TankerEnemy(double x, double y, GameTile cell) {
+    public TankerEnemy(double x, double y) {
         super(x, y,
                 Constants.TANKER_ENEMY_WIDTH,
                 Constants.TANKER_ENEMY_HEIGHT,
                 Constants.TANKER_ENEMY_SPEED,
-                Constants.TANKER_ENEMY_HEALTH,
-                cell);
+                Constants.TANKER_ENEMY_HEALTH);
     }
 
     @Override
