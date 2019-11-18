@@ -36,8 +36,12 @@ public class Bullet implements GameEntity, UpdatableEntity, DestroyableEntity {
         follow(delta);
         remainTime -= delta;
         
+<<<<<<< HEAD
         if (hasCollision(position, target)) {
             remainTime -= 1000000;
+=======
+        if (position.distance(target.getCenter()) < 5) {
+>>>>>>> 41bd985acab06a68b85b8e081bc430aa1eb254d9
             target.onAttack(damage);
         }
     }
@@ -46,6 +50,7 @@ public class Bullet implements GameEntity, UpdatableEntity, DestroyableEntity {
     public boolean isDestroyed() {
         return remainTime <= 0;
     }
+<<<<<<< HEAD
     
     public boolean hasCollision(Point2D a, GameEntity b) {
         Enemy other = (Enemy)b;
@@ -64,6 +69,18 @@ public class Bullet implements GameEntity, UpdatableEntity, DestroyableEntity {
         Point2D offset = target.getPosition().subtract(position);
         position = position.add(offset.normalize().multiply(delta).multiply(Constants.BULLET_SPEED));
     }
+=======
+
+    @Override
+    public void onDestroy(GameField field) {
+        // TODO: EFFECTS?
+    }
+    
+    private void follow(double delta) {
+        Point2D offset = target.getPosition().subtract(position);
+        position = position.add(offset.normalize().multiply(delta).multiply(Constants.BULLET_SPEED));
+    }
+>>>>>>> 41bd985acab06a68b85b8e081bc430aa1eb254d9
     
     public double getX() {
         return position.getX();
@@ -72,6 +89,7 @@ public class Bullet implements GameEntity, UpdatableEntity, DestroyableEntity {
     public double getY() {
         return position.getY();
     }
+<<<<<<< HEAD
     
     public double getWidth() {
         return Constants.BULLET_SIZE;
@@ -80,4 +98,6 @@ public class Bullet implements GameEntity, UpdatableEntity, DestroyableEntity {
     public double getHeight() {
         return Constants.BULLET_SIZE;
     }
+=======
+>>>>>>> 41bd985acab06a68b85b8e081bc430aa1eb254d9
 }
