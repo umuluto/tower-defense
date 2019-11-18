@@ -12,40 +12,54 @@ import javafx.geometry.Point2D;
 
 public abstract class Enemy implements GameEntity, UpdatableEntity, DestroyableEntity {
     private Point2D position;
-    private int width;
-    private int height;
+    private double width;
+    private double height;
 
-    private int speed;
+    private double speed;
     private Point2D direction;
 
     private int health;
-    private GameTile cell;
 
     protected void move(GameField field) {
         GameGrid grid = field.getGrid();
 
-        if (cell == grid.getCell(position.getX() + width, position.getY() + height)) {
-            direction = ((Road)cell).getDirection();
+        GameTile topLeftCell = grid.getCell(position);
+        GameTile botRightCell = grid.getCell(getX() + width, getY() + height);
+        
+        if (topLeftCell == botRightCell) {
+            direction = ((Road)topLeftCell).getDirection();
         }
 
         double delta = field.getDelta();
         Point2D offset = direction.multiply(speed).multiply(delta);
-        Point2D predicted = position.add(offset);
+        
+        Point2D predictedTopLeft = position.add(offset);
+        Point2D predictedBotRight = predictedTopLeft.add(new Point2D(width, height));
 
-        GameTile predictedCell = grid.getCell(predicted);
-        boolean hasCollision = predictedCell.getEntities()
+        GameTile preTopLeftCell = grid.getCell(predictedTopLeft);
+        GameTile preBotRightCell = grid.getCell(predictedBotRight);
+        
+        boolean hasCollision = preTopLeftCell.getEntities()
                                             .stream()
-                                            .anyMatch(e -> hasCollision(predicted, e));
+                                            .anyMatch(e -> hasCollision(predictedTopLeft, e))
+                                || preBotRightCell.getEntities()
+                                            .stream()
+                                            .anyMatch(e -> hasCollision(predictedTopLeft, e));
+        
 
         if (!hasCollision) {
-            position = predicted;
-            grid.changeCell(this, grid.getCell(predicted));
-            cell = grid.getCell(predicted);
+            position = predictedTopLeft;
+            
+            topLeftCell.getEntities().remove(this);
+            preTopLeftCell.getEntities().add(this);
+            
+            botRightCell.getEntities().remove(this);
+            preBotRightCell.getEntities().add(this);
         }
     }
 
     public boolean hasCollision(Point2D a, GameEntity b) {
-        if (!(b instanceof Enemy) || b == this)
+        if (b.getClass() != this.getClass() || b == this)
             return false;
         Enemy other = (Enemy)b;
         return a.getX() < other.getX() + other.width
@@ -64,12 +78,14 @@ public abstract class Enemy implements GameEntity, UpdatableEntity, DestroyableE
     }
 
     @Override
-    public void onDestroy() {
-        cell.getEntities().remove(this);
-    }
+    public void onDestroy(GameField field) {
+        GameGrid grid = field.getGrid();
 
-    public double cellWeight() {
-        return (getX() - cell.getX()) * direction.getX() + (getY() - cell.getY()) * direction.getY();
+        GameTile topLeftCell = grid.getCell(position);
+        GameTile botRightCell = grid.getCell(getX() + width, getY() + height);
+        
+        topLeftCell.getEntities().remove(this);
+        botRightCell.getEntities().remove(this);
     }
 
     @Override
@@ -77,17 +93,16 @@ public abstract class Enemy implements GameEntity, UpdatableEntity, DestroyableE
         move(field);
     }
     
-    public Enemy(Point2D position, int width, int height, int speed, int health, GameTile cell) {
+    public Enemy(Point2D position, double width, double height, double speed, int health) {
         this.position = position;
         this.width = width;
         this.height = height;
         this.speed = speed;
         this.health = health;
-        this.cell = cell;
     }
 
-    public Enemy(double x, double y, int width, int height, int speed, int health, GameTile cell) {
-        this(new Point2D(x, y), width, height, speed, health, cell);
+    public Enemy(double x, double y, double width, double height, double speed, int health) {
+        this(new Point2D(x, y), width, height, speed, health);
     }
 
     public Point2D getPosition() {
@@ -102,7 +117,7 @@ public abstract class Enemy implements GameEntity, UpdatableEntity, DestroyableE
         return new Point2D(getX() + width/2f, getY() + height/2f);
     }
 
-    public int getWidth() {
+    public double getWidth() {
         return width;
     }
 
@@ -110,7 +125,7 @@ public abstract class Enemy implements GameEntity, UpdatableEntity, DestroyableE
         this.width = width;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 
@@ -122,7 +137,7 @@ public abstract class Enemy implements GameEntity, UpdatableEntity, DestroyableE
         return direction.multiply(speed);
     }
 
-    public int getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 
@@ -144,14 +159,6 @@ public abstract class Enemy implements GameEntity, UpdatableEntity, DestroyableE
 
     public void setHealth(int health) {
         this.health = health;
-    }
-
-    public GameTile getCell() {
-        return cell;
-    }
-
-    public void setCell(GameTile cell) {
-        this.cell = cell;
     }
 
     public double getX() {

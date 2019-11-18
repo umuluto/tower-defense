@@ -19,6 +19,9 @@ public abstract class GameTile implements GameEntity {
         this.position = position;
     }
 
+    public Point2D getPosition() {
+        return position;
+    }
 	public double getX() {
         return position.getX();
     }

@@ -21,7 +21,9 @@ public class Target extends Road implements UpdatableEntity {
 
     @Override
     public void update(GameField field) {
-        for (GameEntity e : entities)
+        for (GameEntity e : entities) {
             ((Enemy)e).onAttack(Integer.MAX_VALUE);
+            field.takeDamage(1);
+        }
     }
 }
