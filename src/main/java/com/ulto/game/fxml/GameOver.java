@@ -10,26 +10,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
  *
  * @author ulto
  */
-public class PauseMenu extends HBox {
+public class GameOver extends VBox {
 
-    @FXML
-    private Button resume_button;
-    @FXML
-    private Button save_button;
     @FXML
     private Button exit_button;
     
     private GameWindow gameWindow;
-
-    public PauseMenu() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PauseMenu.fxml"));
+    
+    public GameOver() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/GameOver.fxml"));
         loader.setRoot(this);
         loader.setController(this);
         
@@ -40,22 +36,14 @@ public class PauseMenu extends HBox {
         }
     }
     
-    public PauseMenu(GameWindow gameWindow) {
+    public GameOver(GameWindow gameWindow) {
         this();
         this.gameWindow = gameWindow;
-    }
-
-    @FXML
-    private void resumeGame(ActionEvent event) {
-        gameWindow.resumeGame();
-    }
-
-    @FXML
-    private void saveGame(ActionEvent event) {
     }
 
     @FXML
     private void exitGame(ActionEvent event) {
         gameWindow.toMainMenu();
     }
+    
 }

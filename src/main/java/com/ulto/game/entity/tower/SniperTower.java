@@ -1,6 +1,7 @@
 package com.ulto.game.entity.tower;
 
 import com.ulto.game.Constants;
+import com.ulto.game.entity.drawer.Drawer;
 
 public class SniperTower extends Tower {
     public SniperTower(double x, double y) {
@@ -9,9 +10,9 @@ public class SniperTower extends Tower {
                 Constants.SNIPER_TOWER_RANGE,
                 Constants.SNIPER_TOWER_DELAY);
     }
+    
     @Override
     public void draw() {
-        // TODO Auto-generated method stub
-
+        Drawer.draw(this);
     }
 }

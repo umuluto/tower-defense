@@ -5,12 +5,17 @@ import java.util.List;
 import com.ulto.game.entity.DestroyableEntity;
 import com.ulto.game.entity.GameEntity;
 import com.ulto.game.entity.UpdatableEntity;
+import com.ulto.game.entity.enemy.BossEnemy;
 import com.ulto.game.entity.enemy.NormalEnemy;
+import com.ulto.game.entity.enemy.SmallerEnemy;
+import com.ulto.game.entity.enemy.TankerEnemy;
 import com.ulto.game.entity.tile.GameTile;
+import com.ulto.game.entity.tower.MachineGunTower;
 import com.ulto.game.entity.tower.NormalTower;
 
 public class GameField {
-    // private long debugTime = 0;
+    private WaveCreater waveCreater = new WaveCreater();
+
     private int health = Constants.STARTING_HEALTH;
     private int gold = Constants.STARTING_GOLD;
     
@@ -26,18 +31,17 @@ public class GameField {
     }   
 
     public void update(long now) {
-        // System.out.println(now - debugTime);
-        // debugTime = now;
         double newTime = Math.min(time + 0.016, now / Constants.NPS);
         delta = newTime - time;
         time = newTime;
+        
+        waveCreater.update(this);
         
         int oldSize = entities.size();
         GameEntity e;
         for (int i = 0; i < oldSize; ++i) {
             e = entities.get(i);
-            // if (e instanceof UpdatableEntity)
-                ((UpdatableEntity)e).update(this);
+            ((UpdatableEntity)e).update(this);
         }
 
         DestroyableEntity de;
@@ -60,9 +64,25 @@ public class GameField {
             case "NormalEnemy":
                 newEntity = new NormalEnemy(x, y);
                 break;
+            case "SmallerEnemy":
+                newEntity = new SmallerEnemy(x, y);
+                break;
+            case "TankerEnemy":
+                newEntity = new TankerEnemy(x, y);
+                break;
+            case "BossEnemy":
+                newEntity = new BossEnemy(x, y);
+                break;
             case "NormalTower":
                 newEntity = new NormalTower(x, y);
                 break;
+            case "MachineGunTower":
+                newEntity = new MachineGunTower(x, y);
+                break;
+            case "SniperTower":
+                newEntity = new MachineGunTower(x, y);
+                break;
+
         }
 
         entities.add(newEntity);
@@ -102,5 +122,13 @@ public class GameField {
             return false;
         gold -= amount;
         return true;
+    }
+    
+    public void earnGold(int amount) {
+        gold += amount;
+    }
+    
+    public WaveCreater getWaveCreater() {
+        return waveCreater;
     }
 }

@@ -50,19 +50,11 @@ public class GameStage {
                 }
                 grid.setCell(i, j, tile);
 
-                // TODO: UNCOMMENT THIS
-                // grid.getCell(i, j).draw();
+                grid.getCell(i, j).draw();
             }
         }
 
         pathFind(target);
-
-        // TODO: COMMENT THIS OUT
-        for (int i = 0; i < Constants.NUM_ROW; ++i) {
-            for (int j = 0; j < Constants.NUM_COL; ++j) {
-                grid.getCell(i, j).draw();
-            }
-        }
         
         in.close();
     }

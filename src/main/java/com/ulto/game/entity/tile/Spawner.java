@@ -5,7 +5,6 @@ import java.util.List;
 import com.ulto.game.Constants;
 import com.ulto.game.GameField;
 import com.ulto.game.Pair;
-import com.ulto.game.WaveCreater;
 import com.ulto.game.entity.UpdatableEntity;
 import com.ulto.game.entity.drawer.Drawer;
 
@@ -28,20 +27,21 @@ public class Spawner extends Road implements UpdatableEntity {
         Pair<Integer, String> pair = wave.get(wave.size() - 1);
         field.spawn(pair.getB(), getX(), getY());
         pair.setA(pair.getA() - 1);
-        if (pair.getA().equals(0))
+        if (pair.getA() <= 0)
             wave.remove(wave.size() - 1);
     }
 
     @Override
     public void update(GameField field) {
-        double now = field.getTime();
-        if (now - lastWaveTime > Constants.WAVE_DURATION) {
-            wave = WaveCreater.getWave(now);
-            lastWaveTime = now;
+        double time = field.getTime();
+        if (time - lastWaveTime > field.getWaveCreater().getWaveDuration()) {
+            wave = field.getWaveCreater().getWave();
+            lastWaveTime = time;
         }
-        if (now - lastSpawnTime > Constants.SPAWN_DELAY) {
+        
+        if (time - lastSpawnTime > Constants.SPAWN_DELAY) {
             spawn(field);
-            lastSpawnTime = now;
+            lastSpawnTime = time;
         }
     }
 }

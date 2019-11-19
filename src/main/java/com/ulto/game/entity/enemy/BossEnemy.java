@@ -1,7 +1,7 @@
 package com.ulto.game.entity.enemy;
 
 import com.ulto.game.Constants;
-import com.ulto.game.entity.tile.GameTile;
+import com.ulto.game.entity.drawer.Drawer;
 
 public class BossEnemy extends Enemy {
     public BossEnemy(double x, double y) {
@@ -9,12 +9,12 @@ public class BossEnemy extends Enemy {
                 Constants.BOSS_ENEMY_WIDTH,
                 Constants.BOSS_ENEMY_HEIGHT,
                 Constants.BOSS_ENEMY_SPEED,
-                Constants.BOSS_ENEMY_HEALTH);
+                Constants.BOSS_ENEMY_HEALTH,
+                Constants.BOSS_ENEMY_REWARD);
     }
 
     @Override
     public void draw() {
-        // TODO Auto-generated method stub
-
+        Drawer.draw(this);
     }
 }

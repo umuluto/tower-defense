@@ -12,6 +12,9 @@ public final class Constants {
     public static final int STARTING_HEALTH = 20;
     public static final int STARTING_GOLD = 10;
     
+    public static final int BASE_DIFFICULTY = 10;
+    public static final double STANDBY_TIME = 6;
+    
     public static final double SPAWN_DELAY = 1;
     public static final double WAVE_DURATION = 15;
 
@@ -34,7 +37,7 @@ public final class Constants {
 
     public static final double TOWER_SIZE = TILE_SIZE * 0.75;
     public static final double BULLET_SIZE = 6;
-    public static final double BULLET_SPEED = 200;
+    public static final double BULLET_SPEED = 250;
 
     public static final int NORMAL_TOWER_DAMAGE = 3;
     public static final int MACHINE_GUN_TOWER_DAMAGE = 2;
@@ -44,12 +47,17 @@ public final class Constants {
     public static final double MACHINE_GUN_TOWER_RANGE = 1.3 * TILE_SIZE;
     public static final double SNIPER_TOWER_RANGE = 3.2 * TILE_SIZE;
 
-    public static final double NORMAL_TOWER_DELAY = 0.5;
-    public static final double MACHINE_GUN_TOWER_DELAY = 1;
+    public static final double NORMAL_TOWER_DELAY = 1;
+    public static final double MACHINE_GUN_TOWER_DELAY = 0.2;
     public static final double SNIPER_TOWER_DELAY = 4;
 
     public static final int NORMAL_ENEMY_HEALTH = 5;
     public static final int BOSS_ENEMY_HEALTH = 20;
     public static final int SMALLER_ENEMY_HEALTH = 3;
     public static final int TANKER_ENEMY_HEALTH = 10;
+    
+    public static final int NORMAL_ENEMY_REWARD = 1;
+    public static final int BOSS_ENEMY_REWARD = 10;
+    public static final int SMALLER_ENEMY_REWARD = 2;
+    public static final int TANKER_ENEMY_REWARD = 5;
 }

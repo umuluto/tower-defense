@@ -56,6 +56,8 @@ public class GameWindow extends BorderPane {
     
     private GameController controller;
 
+    private boolean selling = false;
+
     public GameWindow() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/GameWindow.fxml"));
         loader.setRoot(this);
@@ -82,14 +84,20 @@ public class GameWindow extends BorderPane {
 
     @FXML
     private void onMachineGunBuild(ActionEvent event) {
+        towerType = "MachineGunTower";
+        foreground.setDisable(false);
     }
 
     @FXML
     private void onSniperBuild(ActionEvent event) {
+        towerType = "SniperTower";
+        foreground.setDisable(false);
     }
 
     @FXML
     private void onSell(ActionEvent event) {
+        selling = true;
+        foreground.setDisable(false);
     }
 
     @FXML
@@ -102,7 +110,13 @@ public class GameWindow extends BorderPane {
     
     @FXML
     private void onForegroundClick(MouseEvent e) {
-        controller.onBuildRequest(towerType, e.getX(), e.getY());
+        if (!selling)
+            controller.onBuildRequest(towerType, e.getX(), e.getY());
+        else {
+            controller.onSellRequest(e.getX(), e.getY());
+            selling = false;
+        }
+        foreground.setDisable(true);
     }
     
     public void toMainMenu() {
@@ -136,5 +150,12 @@ public class GameWindow extends BorderPane {
         sidebar.setDisable(false);
         foreground.setDisable(false);
         controller.start();
+    }
+    
+    public void gameOver() {
+        sidebar.setDisable(true);
+        foreground.setDisable(true);
+        canvasStack.getChildren().add(new GameOver(this));
+        controller.stop();
     }
 }

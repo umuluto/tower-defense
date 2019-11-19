@@ -19,6 +19,7 @@ public abstract class Enemy implements GameEntity, UpdatableEntity, DestroyableE
     private Point2D direction;
 
     private int health;
+    private int reward;
 
     protected void move(GameField field) {
         GameGrid grid = field.getGrid();
@@ -93,16 +94,17 @@ public abstract class Enemy implements GameEntity, UpdatableEntity, DestroyableE
         move(field);
     }
     
-    public Enemy(Point2D position, double width, double height, double speed, int health) {
+    public Enemy(Point2D position, double width, double height, double speed, int health, int reward) {
         this.position = position;
         this.width = width;
         this.height = height;
         this.speed = speed;
         this.health = health;
+        this.reward = reward;
     }
 
-    public Enemy(double x, double y, double width, double height, double speed, int health) {
-        this(new Point2D(x, y), width, height, speed, health);
+    public Enemy(double x, double y, double width, double height, double speed, int health, int reward) {
+        this(new Point2D(x, y), width, height, speed, health, reward);
     }
 
     public Point2D getPosition() {
@@ -167,5 +169,9 @@ public abstract class Enemy implements GameEntity, UpdatableEntity, DestroyableE
 
     public double getY() {
         return position.getY();
+    }
+    
+    public int getReward() {
+        return reward;
     }
 }

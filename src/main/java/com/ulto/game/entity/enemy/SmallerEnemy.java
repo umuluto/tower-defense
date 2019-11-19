@@ -1,7 +1,7 @@
 package com.ulto.game.entity.enemy;
 
 import com.ulto.game.Constants;
-import com.ulto.game.entity.tile.GameTile;
+import com.ulto.game.entity.drawer.Drawer;
 
 public class SmallerEnemy extends Enemy{
     public SmallerEnemy(double x, double y) {
@@ -9,12 +9,12 @@ public class SmallerEnemy extends Enemy{
                 Constants.SMALLER_ENEMY_WIDTH,
                 Constants.SMALLER_ENEMY_HEIGHT,
                 Constants.SMALLER_ENEMY_SPEED,
-                Constants.SMALLER_ENEMY_HEALTH);
+                Constants.SMALLER_ENEMY_HEALTH,
+                Constants.SMALLER_ENEMY_REWARD);
     }
 
     @Override
     public void draw() {
-        // TODO Auto-generated method stub
-
+        Drawer.draw(this);
     }  
 }

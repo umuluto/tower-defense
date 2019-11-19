@@ -1,6 +1,7 @@
 package com.ulto.game.entity.tower;
 
 import com.ulto.game.Constants;
+import com.ulto.game.entity.drawer.Drawer;
 
 public class MachineGunTower extends Tower {
     public MachineGunTower(double x, double y) {
@@ -12,7 +13,6 @@ public class MachineGunTower extends Tower {
 
     @Override
     public void draw() {
-        // TODO Auto-generated method stub
-
+        Drawer.draw(this);
     }
 }

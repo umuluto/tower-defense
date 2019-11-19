@@ -34,9 +34,9 @@
             </GridPane>
             <Separator prefWidth="200.0" />
             <Label text="Build:" />
-            <Button fx:id="nm_tower_button" mnemonicParsing="false" onAction="#onNormalBuild" text="Normal Tower" />
-            <Button fx:id="mg_tower_button" mnemonicParsing="false" onAction="#onMachineGunBuild" text="Machine Gun Tower" />
-            <Button fx:id="sp_button" mnemonicParsing="false" onAction="#onSniperBuild" text="Sniper Tower" />
+            <Button fx:id="nm_tower_button" mnemonicParsing="false" onAction="#onNormalBuild" text="Normal Tower($5)" />
+            <Button fx:id="mg_tower_button" mnemonicParsing="false" onAction="#onMachineGunBuild" text="M. Gun Tower($15)" />
+            <Button fx:id="sp_button" mnemonicParsing="false" onAction="#onSniperBuild" text="Sniper Tower($30)" />
             <Separator prefWidth="200.0" />
             <Button fx:id="sell_button" mnemonicParsing="false" onAction="#onSell" text="Sell" />
             <Separator prefWidth="200.0" />

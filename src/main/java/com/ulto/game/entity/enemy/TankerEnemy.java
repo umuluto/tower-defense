@@ -1,7 +1,7 @@
 package com.ulto.game.entity.enemy;
 
 import com.ulto.game.Constants;
-import com.ulto.game.entity.tile.GameTile;
+import com.ulto.game.entity.drawer.Drawer;
 
 public class TankerEnemy extends Enemy {
     public TankerEnemy(double x, double y) {
@@ -9,12 +9,12 @@ public class TankerEnemy extends Enemy {
                 Constants.TANKER_ENEMY_WIDTH,
                 Constants.TANKER_ENEMY_HEIGHT,
                 Constants.TANKER_ENEMY_SPEED,
-                Constants.TANKER_ENEMY_HEALTH);
+                Constants.TANKER_ENEMY_HEALTH,
+                Constants.TANKER_ENEMY_REWARD);
     }
 
     @Override
     public void draw() {
-        // TODO Auto-generated method stub
-
+        Drawer.draw(this);
     }
 }
