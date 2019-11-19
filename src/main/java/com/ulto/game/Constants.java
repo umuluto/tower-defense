@@ -1,7 +1,5 @@
 package com.ulto.game;
 
-import javafx.scene.image.Image;
-
 public final class Constants {
     public static final double NPS = 1e9;
     public static final int TILE_SIZE = 30;
@@ -62,13 +60,4 @@ public final class Constants {
     public static final int BOSS_ENEMY_REWARD = 10;
     public static final int SMALLER_ENEMY_REWARD = 2;
     public static final int TANKER_ENEMY_REWARD = 5;
-
-    public static Image img_tree0 = new Image("/Tree_Rock/towerDefense_tile236.png",Constants.TILE_SIZE,Constants.TILE_SIZE,false,true);
-    public static Image img_tree1 = new Image("/Tree_Rock/towerDefense_tile132.png",Constants.TILE_SIZE,Constants.TILE_SIZE,false,true);
-    public static Image img_tree2 = new Image("/Tree_Rock/towerDefense_tile134.png",Constants.TILE_SIZE,Constants.TILE_SIZE,false,true);
-    public static Image img_tree3 = new Image("/Tree_Rock/towerDefense_tile157.png",Constants.TILE_SIZE,Constants.TILE_SIZE,false,true);
-    public static Image grass = new Image("/Tree_Rock/towerDefense_tile157.png",Constants.TILE_SIZE,Constants.TILE_SIZE,false,true);
-    public static Image img_road = new Image("/towerDefense_tile200.png",Constants.TILE_SIZE,Constants.TILE_SIZE,false,true);
-    public static Image img_spawner = new Image("/towerDefense_tile278.png",Constants.TILE_SIZE,Constants.TILE_SIZE,false,true);
-    public static Image img_target = new Image("/towerDefense_tile247.png",Constants.TILE_SIZE,Constants.TILE_SIZE,false,true);
 }

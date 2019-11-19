@@ -32,10 +32,10 @@ public class GameStage {
 
                 GameTile tile = null;
                 switch (in.nextInt()) {
-                    case 0:
+                    case 0: 
                         tile = new Road(x, y);
                         break;
-                    case 1:
+                    case 1: 
                         tile = new Mountain(x, y);
                         break;
                     case 2:
@@ -66,7 +66,7 @@ public class GameStage {
         Queue<Pair<Integer, Integer>> queue = new LinkedList<>();
         queue.add(target);
 
-        Road currentCell, otherCell;
+        Road currentCell, otherCell; 
         int i, j, u, v;
 
         while (!queue.isEmpty()) {

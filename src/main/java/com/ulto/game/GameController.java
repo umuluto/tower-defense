@@ -38,10 +38,10 @@ public class GameController extends AnimationTimer {
         double inset = (Constants.TILE_SIZE - Constants.TOWER_SIZE) / 2f;
         GameTile tile = field.getGrid().getCell(x, y);
         if (!(tile instanceof Mountain) || !tile.getEntities().isEmpty())
-            return;
+            return; 
         if (!field.spendGold(cost(type)))
             return;
-            
+        
         field.spawn(type, tile.getX() + inset, tile.getY() + inset);
     }
 

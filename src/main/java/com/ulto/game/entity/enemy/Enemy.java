@@ -16,7 +16,7 @@ public abstract class Enemy implements GameEntity, UpdatableEntity, DestroyableE
     private double height;
 
     private double speed;
-    private Point2D direction = new Point2D(0, 0);
+    private Point2D direction;
 
     private int health;
     private int reward;
