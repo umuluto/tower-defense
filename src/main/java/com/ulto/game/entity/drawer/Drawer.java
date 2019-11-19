@@ -20,7 +20,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class Drawer {
-    private static GraphicsContext background;   
+    private static GraphicsContext background;
     private static GraphicsContext foreground;
 
     public static void batchDraw(GameField field) {
