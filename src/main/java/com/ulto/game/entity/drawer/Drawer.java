@@ -83,23 +83,23 @@ public class Drawer {
         foreground.fillRect(enemy.getX(), enemy.getY(), Constants.BOSS_ENEMY_WIDTH, Constants.BOSS_ENEMY_HEIGHT);
     }
 
-    public static void draw(NormalTower normalTower) {
-        foreground.setFill(Color.PURPLE);
-        foreground.fillRect(normalTower.getX(), normalTower.getY(), Constants.TOWER_SIZE, Constants.TOWER_SIZE);
-    }
+    // public static void draw(NormalTower normalTower) {
+    //     foreground.setFill(Color.PURPLE);
+    //     foreground.fillRect(normalTower.getX(), normalTower.getY(), Constants.TOWER_SIZE, Constants.TOWER_SIZE);
+    // }
 
-    public static void draw(MachineGunTower normalTower) {
-        foreground.setFill(Color.BEIGE);
-        foreground.fillRect(normalTower.getX(), normalTower.getY(), Constants.TOWER_SIZE, Constants.TOWER_SIZE);
-    }
+    // public static void draw(MachineGunTower normalTower) {
+    //     foreground.setFill(Color.BEIGE);
+    //     foreground.fillRect(normalTower.getX(), normalTower.getY(), Constants.TOWER_SIZE, Constants.TOWER_SIZE);
+    // }
 
-    public static void draw(SniperTower normalTower) {
-        foreground.setFill(Color.YELLOW);
-        foreground.fillRect(normalTower.getX(), normalTower.getY(), Constants.TOWER_SIZE, Constants.TOWER_SIZE);
-    }
+    // public static void draw(SniperTower normalTower) {
+    //     foreground.setFill(Color.YELLOW);
+    //     foreground.fillRect(normalTower.getX(), normalTower.getY(), Constants.TOWER_SIZE, Constants.TOWER_SIZE);
+    // }
     
-    public static void draw(Bullet bullet) {
-        foreground.setFill(Color.BLACK);
-        foreground.fillRect(bullet.getX(), bullet.getY(), Constants.BULLET_SIZE, Constants.BULLET_SIZE);
-    }
+    // public static void draw(Bullet bullet) {
+    //     foreground.setFill(Color.BLACK);
+    //     foreground.fillRect(bullet.getX(), bullet.getY(), Constants.BULLET_SIZE, Constants.BULLET_SIZE);
+    // }
 }

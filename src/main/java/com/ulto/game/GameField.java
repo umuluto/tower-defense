@@ -2,9 +2,8 @@ package com.ulto.game;
 
 import java.util.List;
 
-import com.ulto.game.entity.DestroyableEntity;
+import com.ulto.game.entity.Destroyable;
 import com.ulto.game.entity.GameEntity;
-import com.ulto.game.entity.UpdatableEntity;
 import com.ulto.game.entity.enemy.BossEnemy;
 import com.ulto.game.entity.enemy.NormalEnemy;
 import com.ulto.game.entity.enemy.SmallerEnemy;
@@ -41,15 +40,16 @@ public class GameField {
         GameEntity e;
         for (int i = 0; i < oldSize; ++i) {
             e = entities.get(i);
-            ((UpdatableEntity)e).update(this);
+            e.update(this);
         }
 
-        DestroyableEntity de;
+        Destroyable de;
         for (int i = 0; i < entities.size(); ++i) {
             e = entities.get(i);
-            if (e instanceof DestroyableEntity) {
-                de = (DestroyableEntity)e;
+            if (e instanceof Destroyable) {
+                de = (Destroyable)e;
                 if (de.isDestroyed()) {
+                    System.out.println("#");
                     de.onDestroy(this);
                     entities.remove(i--);
                 }

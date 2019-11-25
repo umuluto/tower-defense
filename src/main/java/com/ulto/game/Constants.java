@@ -37,6 +37,11 @@ public final class Constants {
     public static final double TANKER_ENEMY_SPEED = 50;
     public static final double SMALLER_ENEMY_SPEED = 100;
 
+    public static final double NORMAL_ENEMY_MAX_FORCE = 1000;
+    public static final double BOSS_ENEMY_MAX_FORCE = 1000;
+    public static final double TANKER_ENEMY_MAX_FORCE = 1000;
+    public static final double SMALLER_ENEMY_MAX_FORCE = 1000;
+
     public static final double TOWER_SIZE = TILE_SIZE * 0.75;
     public static final double BULLET_SIZE = 6;
     public static final double BULLET_SPEED = 250;

@@ -13,6 +13,6 @@ public class SniperTower extends Tower {
     
     @Override
     public void draw() {
-        Drawer.draw(this);
+        // Drawer.draw(this);
     }
 }

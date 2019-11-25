@@ -1,11 +1,10 @@
 package com.ulto.game;
 
-import com.ulto.game.entity.UpdatableEntity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class WaveCreater implements UpdatableEntity {
+public class WaveCreater {
     private List<Pair<Integer, String>> wave = new ArrayList<>();
     private double lastWaveTime = Integer.MIN_VALUE;
     private double difficulty = Constants.BASE_DIFFICULTY;
@@ -15,7 +14,6 @@ public class WaveCreater implements UpdatableEntity {
     private boolean newlyInit = false;
     private String[] types = new String[] {"NormalEnemy", "SmallerEnemy", "TankerEnemy", "BossEnemy"};
 
-    @Override
     public void update(GameField field) {
         if (newlyInit) {
             waveDuration = maxDuration;

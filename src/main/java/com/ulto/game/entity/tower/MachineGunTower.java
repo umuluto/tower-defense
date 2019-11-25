@@ -13,6 +13,6 @@ public class MachineGunTower extends Tower {
 
     @Override
     public void draw() {
-        Drawer.draw(this);
+        // Drawer.draw(this);
     }
 }

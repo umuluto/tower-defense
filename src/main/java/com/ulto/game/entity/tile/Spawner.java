@@ -5,19 +5,15 @@ import java.util.List;
 import com.ulto.game.Constants;
 import com.ulto.game.GameField;
 import com.ulto.game.Pair;
-import com.ulto.game.entity.UpdatableEntity;
 import com.ulto.game.entity.drawer.Drawer;
 
-import javafx.geometry.Point2D;
-
-public class Spawner extends Road implements UpdatableEntity {
+public class Spawner extends Road {
     private List<Pair<Integer, String>> wave;
     private double lastWaveTime = Integer.MIN_VALUE;
     private double lastSpawnTime = Integer.MIN_VALUE;
 
     public Spawner(int x, int y) {
         super(x, y);
-        direction = new Point2D(0, 0);
     }
 
     @Override

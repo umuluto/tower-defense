@@ -1,5 +1,13 @@
 package com.ulto.game.entity;
 
-public interface GameEntity {
-    public void draw();
+import java.util.List;
+
+import com.ulto.game.GameField;
+
+public abstract class GameEntity {
+    protected List<Behavior> behaviors;
+
+    public abstract void update(GameField field);
+
+    public abstract void draw();
 }

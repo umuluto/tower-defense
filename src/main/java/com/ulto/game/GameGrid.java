@@ -2,8 +2,9 @@ package com.ulto.game;
 
 import com.ulto.game.entity.enemy.Enemy;
 import com.ulto.game.entity.tile.GameTile;
+import com.ulto.game.util.Vector;
 
-import javafx.geometry.Point2D;
+import javafx.util.Pair;
 
 public class GameGrid {
     private GameTile[][] grid = new GameTile[Constants.NUM_ROW][Constants.NUM_COL];
@@ -18,7 +19,7 @@ public class GameGrid {
         return grid[v][u];
     }
 
-    public GameTile getCell(Point2D pos) {
+    public GameTile getCell(Vector pos) {
         return getCell(pos.getX(), pos.getY());
     }
 
@@ -30,11 +31,6 @@ public class GameGrid {
         grid[i][j] = cell;
     }
 
-    public void changeCell(Enemy e, GameTile cell) {
-        getCell(e.getPosition()).getEntities().remove(e);
-        cell.getEntities().add(e);
-    }
-
     public static boolean inGrid(int i, int j) {
         return 0 <= i && i < Constants.NUM_ROW && 0 <= j && j < Constants.NUM_COL;
     }
@@ -43,7 +39,7 @@ public class GameGrid {
         return 0 <= x && x < Constants.SCREEN_WIDTH && 0 <= y && y < Constants.SCREEN_HEIGHT;
     }
 
-    public static boolean inGrid(Point2D pos) {
+    public static boolean inGrid(Vector pos) {
         return inGrid(pos.getX(), pos.getY());
     }
 }

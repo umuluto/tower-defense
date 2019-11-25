@@ -13,8 +13,7 @@ import com.ulto.game.entity.tile.Mountain;
 import com.ulto.game.entity.tile.Road;
 import com.ulto.game.entity.tile.Spawner;
 import com.ulto.game.entity.tile.Target;
-
-import javafx.geometry.Point2D;
+import com.ulto.game.util.Vector;
 
 public class GameStage {
     private GameGrid grid = new GameGrid();
@@ -85,7 +84,7 @@ public class GameStage {
                 }
                 if (otherCell.getDistance() < currentCell.getDistance()) {
                     currentCell.setDistance(otherCell.getDistance() + 1);
-                    currentCell.setDirection(new Point2D(v - j, u - i));
+                    currentCell.setDirection(new Vector(v - j, u - i));
                 }
             }
         }
