@@ -12,13 +12,14 @@ import com.ulto.game.entity.enemy.TankerEnemy;
 import com.ulto.game.entity.tile.GameTile;
 import com.ulto.game.entity.tower.MachineGunTower;
 import com.ulto.game.entity.tower.NormalTower;
+import com.ulto.game.entity.tower.SniperTower;
 
 public class GameField {
     private WaveCreater waveCreater = new WaveCreater();
 
     private int health = Constants.STARTING_HEALTH;
     private int gold = Constants.STARTING_GOLD;
-    
+
     private double time;
     private double delta;
 
@@ -28,15 +29,15 @@ public class GameField {
     public GameField(GameStage stage) {
         this.grid = stage.getGrid();
         this.entities = stage.getEntities();
-    }   
+    }
 
     public void update(long now) {
         double newTime = Math.min(time + 0.016, now / Constants.NPS);
         delta = newTime - time;
         time = newTime;
-        
+
         waveCreater.update(this);
-        
+
         int oldSize = entities.size();
         GameEntity e;
         for (int i = 0; i < oldSize; ++i) {
@@ -80,7 +81,7 @@ public class GameField {
                 newEntity = new MachineGunTower(x, y);
                 break;
             case "SniperTower":
-                newEntity = new MachineGunTower(x, y);
+                newEntity = new SniperTower(x, y);
                 break;
 
         }
@@ -102,32 +103,32 @@ public class GameField {
     }
 
     public double getDelta() {
-            return delta;
+        return delta;
     }
-    
+
     public int getHealth() {
         return health;
     }
-    
+
     public void takeDamage(int damage) {
         health = Math.max(health - damage, 0);
     }
-    
+
     public int getGold() {
         return gold;
     }
-    
+
     public boolean spendGold(int amount) {
         if (amount > gold)
             return false;
         gold -= amount;
         return true;
     }
-    
+
     public void earnGold(int amount) {
         gold += amount;
     }
-    
+
     public WaveCreater getWaveCreater() {
         return waveCreater;
     }

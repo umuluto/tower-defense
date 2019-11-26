@@ -7,6 +7,7 @@ import javafx.geometry.Point2D;
 public class Road extends GameTile {
     protected Point2D direction;
     protected int distance;
+    private int code;
 
     protected Road(int x, int y, int distance) {
         super(x, y);
@@ -18,7 +19,7 @@ public class Road extends GameTile {
     }
 
     @Override
-    public void draw() {
+    public void draw(int code) {
         Drawer.draw(this);
     }
 

@@ -29,12 +29,13 @@ public abstract class Tower implements GameEntity, UpdatableEntity {
             currentTarget = heaviestInRange(field);
         if (currentTarget == null)
             return;
-            
+
         shoot(field, currentTarget);
         lastShotTime = field.getTime();
     }
 
     public void shoot(GameField field, Enemy target) {
+        playSound();
         double remainTime = range / Constants.BULLET_SPEED;
         field.getEntities().add(new Bullet(getCenter(), target, damage, remainTime));
     }
@@ -55,7 +56,7 @@ public abstract class Tower implements GameEntity, UpdatableEntity {
                 GameTile currentTile = grid.getCell(u, v);
 
                 if (!(currentTile instanceof Road) || !inRange(currentTile)) continue;
-                
+
                 Road road = (Road)currentTile;
                 if (road.getDistance() > minDistance) continue;
                 maxWeight = Integer.MIN_VALUE;
@@ -75,7 +76,7 @@ public abstract class Tower implements GameEntity, UpdatableEntity {
 
         return (Enemy)heaviestEntity;
     }
-    
+
     private double cellWeight(Enemy enemy, Road cell) {
         Point2D offset = enemy.getPosition().subtract(cell.getPosition());
         return cell.getDirection().dotProduct(offset);
@@ -91,9 +92,9 @@ public abstract class Tower implements GameEntity, UpdatableEntity {
 
     private boolean inRange(double u, double v, double w, double h) {
         return inRange(u, v)
-                || inRange(u, v + h)
-                || inRange(u + w, v)
-                || inRange(u + w, v + h);
+            || inRange(u, v + h)
+            || inRange(u + w, v)
+            || inRange(u + w, v + h);
     }
 
     private boolean inRange(double u, double v) {
@@ -148,4 +149,6 @@ public abstract class Tower implements GameEntity, UpdatableEntity {
     public double getDelay() {
         return delay;
     }
+
+    public void playSound(){};
 }

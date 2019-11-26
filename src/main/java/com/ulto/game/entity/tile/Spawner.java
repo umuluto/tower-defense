@@ -12,13 +12,14 @@ public class Spawner extends Road implements UpdatableEntity {
     private List<Pair<Integer, String>> wave;
     private double lastWaveTime = Integer.MIN_VALUE;
     private double lastSpawnTime = Integer.MIN_VALUE;
+    private int code;
 
     public Spawner(int x, int y) {
         super(x, y);
     }
 
     @Override
-    public void draw() {
+    public void draw(int code) {
         Drawer.draw(this);
     }
 
@@ -38,7 +39,7 @@ public class Spawner extends Road implements UpdatableEntity {
             wave = field.getWaveCreater().getWave();
             lastWaveTime = time;
         }
-        
+
         if (time - lastSpawnTime > Constants.SPAWN_DELAY) {
             spawn(field);
             lastSpawnTime = time;

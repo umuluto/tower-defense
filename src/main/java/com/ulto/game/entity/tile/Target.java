@@ -15,7 +15,7 @@ public class Target extends Road implements UpdatableEntity {
     }
 
     @Override
-    public void draw() {
+    public void draw(int code) {
         Drawer.draw(this);
     }
 

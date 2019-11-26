@@ -5,10 +5,11 @@ import com.ulto.game.entity.drawer.Drawer;
 public class Mountain extends GameTile {
     public Mountain(int x, int y) {
         super(x, y);
+
     }
 
     @Override
-    public void draw() {
-        Drawer.draw(this);
+    public void draw(int code) {
+        Drawer.draw(this,code);
     }
 }

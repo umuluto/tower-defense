@@ -12,7 +12,7 @@ public class Bullet implements GameEntity, UpdatableEntity, DestroyableEntity {
     private int damage;
     private Enemy target;
     private double remainTime;
-    
+
     public Bullet(Point2D position, Enemy target, int damage, double remainTime) {
         this.position = position;
         this.target = target;
@@ -21,7 +21,7 @@ public class Bullet implements GameEntity, UpdatableEntity, DestroyableEntity {
     }
 
     @Override
-    public void draw() {
+    public void draw(int code) {
         Drawer.draw(this);
     }
 
@@ -31,11 +31,11 @@ public class Bullet implements GameEntity, UpdatableEntity, DestroyableEntity {
             remainTime -= 100000;
             return;
         }
-        
+
         double delta = field.getDelta();
         follow(delta);
         remainTime -= delta;
-        
+
         if (hasCollision(position, target)) {
             remainTime -= 100000;
             target.onAttack(damage);
@@ -49,37 +49,37 @@ public class Bullet implements GameEntity, UpdatableEntity, DestroyableEntity {
     public boolean isDestroyed() {
         return remainTime <= 0;
     }
-    
+
     public boolean hasCollision(Point2D a, GameEntity b) {
         Enemy other = (Enemy)b;
         return a.getX() < other.getX() + getWidth()
-                && a.getX() + getWidth() > other.getX()
-                && a.getY() < other.getY() + other.getHeight()
-                && a.getY() + getHeight() > other.getY();
+            && a.getX() + getWidth() > other.getX()
+            && a.getY() < other.getY() + other.getHeight()
+            && a.getY() + getHeight() > other.getY();
     }
 
     @Override
     public void onDestroy(GameField field) {
         // TODO: EFFECTS?
     }
-    
+
     private void follow(double delta) {
         Point2D offset = target.getPosition().subtract(position);
         position = position.add(offset.normalize().multiply(delta).multiply(Constants.BULLET_SPEED));
     }
-    
+
     public double getX() {
         return position.getX();
     }
-    
+
     public double getY() {
         return position.getY();
     }
-    
+
     public double getWidth() {
         return Constants.BULLET_SIZE;
     }
-    
+
     public double getHeight() {
         return Constants.BULLET_SIZE;
     }

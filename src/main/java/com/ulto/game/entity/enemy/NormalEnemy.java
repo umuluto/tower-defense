@@ -6,15 +6,15 @@ import com.ulto.game.entity.drawer.Drawer;
 public class NormalEnemy extends Enemy {
     public NormalEnemy(double x, double y) {
         super(x, y,
-                Constants.NORMAL_ENEMY_WIDTH,
-                Constants.NORMAL_ENEMY_HEIGHT,
-                Constants.NORMAL_ENEMY_SPEED,
-                Constants.NORMAL_ENEMY_HEALTH,
-                Constants.NORMAL_ENEMY_REWARD);
+            Constants.NORMAL_ENEMY_WIDTH,
+            Constants.NORMAL_ENEMY_HEIGHT,
+            Constants.NORMAL_ENEMY_SPEED,
+            Constants.NORMAL_ENEMY_HEALTH,
+            Constants.NORMAL_ENEMY_REWARD);
     }
 
     @Override
-    public void draw() {
+    public void draw(int code) {
         Drawer.draw(this);
     }
 }
