@@ -15,7 +15,7 @@ public class NormalEnemy extends Enemy {
     }
 
     @Override
-    public void draw() {
+    public void draw(int code) {
         Drawer.draw(this);
     }
 }

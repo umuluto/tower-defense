@@ -33,26 +33,27 @@ public class LevelSelect extends BorderPane {
     private Button lvl3_button;
     @FXML
     private Button lvl4_button;
-    
+
     private Game game;
 
     public LevelSelect() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LevelSelect.fxml"));
         loader.setRoot(this);
         loader.setController(this);
-        
+
         try {
             loader.load();
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
     }
-    
+
     public LevelSelect(Game game) {
-        this();
+        this(); //call other constructor, means call levelSelect()
         this.game = game;
     }
-    
+
+    //under is used in LevelSelect.fxml
     @FXML
     private void startLevel1(ActionEvent event) {
         game.setScene(startLevel("/map/level1.txt"));
@@ -72,7 +73,7 @@ public class LevelSelect extends BorderPane {
     private void startLevel4(ActionEvent event) {
         game.setScene(startLevel("/map/level4.txt"));
     }
-    
+
     public void setGame(Game game) {
         this.game = game;
     }
@@ -81,18 +82,18 @@ public class LevelSelect extends BorderPane {
     private void toMainMenu(ActionEvent event) {
         game.toMainMenu();
     }
-    
+
     private Scene startLevel(String name) {
         GameWindow gameWindow = new GameWindow(game);
         Drawer.setGraphicsContexts(gameWindow.getBackgroundContext(), gameWindow.getForegroundContext());
-        
+
         GameController controller = new GameController(name);
-        
+
         gameWindow.setController(controller);
         controller.setGameWindow(gameWindow);
-        
+
         controller.start();
-        
+
         return new Scene(gameWindow);
     }
 }
