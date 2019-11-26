@@ -27,34 +27,34 @@ public abstract class Enemy implements GameEntity, UpdatableEntity, DestroyableE
 
         GameTile topLeftCell = grid.getCell(position);
         GameTile botRightCell = grid.getCell(getX() + width, getY() + height);
-        
+
         if (topLeftCell == botRightCell) {
             direction = ((Road)topLeftCell).getDirection();
         }
 
         double delta = field.getDelta();
         Point2D offset = direction.multiply(speed).multiply(delta);
-        
+
         Point2D predictedTopLeft = position.add(offset);
         Point2D predictedBotRight = predictedTopLeft.add(new Point2D(width, height));
 
         GameTile preTopLeftCell = grid.getCell(predictedTopLeft);
         GameTile preBotRightCell = grid.getCell(predictedBotRight);
-        
+
         boolean hasCollision = preTopLeftCell.getEntities()
                                             .stream()
                                             .anyMatch(e -> hasCollision(predictedTopLeft, e))
                                 || preBotRightCell.getEntities()
                                             .stream()
                                             .anyMatch(e -> hasCollision(predictedTopLeft, e));
-        
+
 
         if (!hasCollision) {
             position = predictedTopLeft;
-            
+
             topLeftCell.getEntities().remove(this);
             preTopLeftCell.getEntities().add(this);
-            
+
             botRightCell.getEntities().remove(this);
             preBotRightCell.getEntities().add(this);
         }
@@ -85,7 +85,7 @@ public abstract class Enemy implements GameEntity, UpdatableEntity, DestroyableE
 
         GameTile topLeftCell = grid.getCell(position);
         GameTile botRightCell = grid.getCell(getX() + width, getY() + height);
-        
+
         topLeftCell.getEntities().remove(this);
         botRightCell.getEntities().remove(this);
     }
@@ -174,7 +174,7 @@ public abstract class Enemy implements GameEntity, UpdatableEntity, DestroyableE
     public double getY() {
         return position.getY();
     }
-    
+
     public int getReward() {
         return reward;
     }
