@@ -16,9 +16,10 @@ public abstract class Enemy implements GameEntity, UpdatableEntity, DestroyableE
     private double height;
 
     private double speed;
-    private Point2D direction = new Point2D(0, 0);
+    private Point2D direction = Point2D.ZERO;
 
     private int health;
+    private int armor;
     private int reward;
 
     protected void move(GameField field) {
@@ -70,7 +71,7 @@ public abstract class Enemy implements GameEntity, UpdatableEntity, DestroyableE
     }
 
     public void onAttack(int damage) {
-        health -= damage;
+        health -= damage - armor;
     }
 
     @Override
@@ -94,17 +95,20 @@ public abstract class Enemy implements GameEntity, UpdatableEntity, DestroyableE
         move(field);
     }
     
-    public Enemy(Point2D position, double width, double height, double speed, int health, int reward) {
+    public Enemy(Point2D position, double width, double height, double speed,
+                 int health, int armor, int reward) {
         this.position = position;
         this.width = width;
         this.height = height;
         this.speed = speed;
         this.health = health;
+        this.armor = armor;
         this.reward = reward;
     }
 
-    public Enemy(double x, double y, double width, double height, double speed, int health, int reward) {
-        this(new Point2D(x, y), width, height, speed, health, reward);
+    public Enemy(double x, double y, double width, double height, double speed,
+                 int health, int armor, int reward) {
+        this(new Point2D(x, y), width, height, speed, health, armor, reward);
     }
 
     public Point2D getPosition() {

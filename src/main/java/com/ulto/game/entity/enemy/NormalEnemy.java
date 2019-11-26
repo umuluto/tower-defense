@@ -10,6 +10,7 @@ public class NormalEnemy extends Enemy {
                 Constants.NORMAL_ENEMY_HEIGHT,
                 Constants.NORMAL_ENEMY_SPEED,
                 Constants.NORMAL_ENEMY_HEALTH,
+                Constants.NORMAL_ENEMY_ARMOR,
                 Constants.NORMAL_ENEMY_REWARD);
     }
 

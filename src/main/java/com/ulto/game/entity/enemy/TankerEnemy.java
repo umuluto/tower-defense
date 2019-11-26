@@ -10,6 +10,7 @@ public class TankerEnemy extends Enemy {
                 Constants.TANKER_ENEMY_HEIGHT,
                 Constants.TANKER_ENEMY_SPEED,
                 Constants.TANKER_ENEMY_HEALTH,
+                Constants.TANKER_ENEMY_ARMOR,
                 Constants.TANKER_ENEMY_REWARD);
     }
 

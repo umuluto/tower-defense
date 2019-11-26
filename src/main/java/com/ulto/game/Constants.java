@@ -41,9 +41,9 @@ public final class Constants {
     public static final double BULLET_SIZE = 6;
     public static final double BULLET_SPEED = 250;
 
-    public static final int NORMAL_TOWER_DAMAGE = 3;
-    public static final int MACHINE_GUN_TOWER_DAMAGE = 2;
-    public static final int SNIPER_TOWER_DAMAGE = 5;
+    public static final int NORMAL_TOWER_DAMAGE = 8;
+    public static final int MACHINE_GUN_TOWER_DAMAGE = 6;
+    public static final int SNIPER_TOWER_DAMAGE = 15;
 
     public static final double NORMAL_TOWER_RANGE = 2.4 * TILE_SIZE;
     public static final double MACHINE_GUN_TOWER_RANGE = 1.3 * TILE_SIZE;
@@ -53,11 +53,16 @@ public final class Constants {
     public static final double MACHINE_GUN_TOWER_DELAY = 0.2;
     public static final double SNIPER_TOWER_DELAY = 4;
 
-    public static final int NORMAL_ENEMY_HEALTH = 5;
-    public static final int BOSS_ENEMY_HEALTH = 20;
-    public static final int SMALLER_ENEMY_HEALTH = 3;
-    public static final int TANKER_ENEMY_HEALTH = 10;
+    public static final int NORMAL_ENEMY_HEALTH = 12;
+    public static final int BOSS_ENEMY_HEALTH = 30;
+    public static final int SMALLER_ENEMY_HEALTH = 7;
+    public static final int TANKER_ENEMY_HEALTH = 20;
     
+    public static final int NORMAL_ENEMY_ARMOR = 2;
+    public static final int BOSS_ENEMY_ARMOR = 5;
+    public static final int SMALLER_ENEMY_ARMOR = 1;
+    public static final int TANKER_ENEMY_ARMOR = 3;
+
     public static final int NORMAL_ENEMY_REWARD = 1;
     public static final int BOSS_ENEMY_REWARD = 10;
     public static final int SMALLER_ENEMY_REWARD = 2;

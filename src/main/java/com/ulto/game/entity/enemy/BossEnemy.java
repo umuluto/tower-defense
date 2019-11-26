@@ -10,6 +10,7 @@ public class BossEnemy extends Enemy {
                 Constants.BOSS_ENEMY_HEIGHT,
                 Constants.BOSS_ENEMY_SPEED,
                 Constants.BOSS_ENEMY_HEALTH,
+                Constants.BOSS_ENEMY_ARMOR,
                 Constants.BOSS_ENEMY_REWARD);
     }
 

@@ -11,7 +11,7 @@ import javafx.geometry.Point2D;
 public class Target extends Road implements UpdatableEntity {
     public Target(int x, int y) {
         super(x, y, 0);
-        direction = new Point2D(0, 0);
+        direction = Point2D.ZERO;
     }
 
     @Override

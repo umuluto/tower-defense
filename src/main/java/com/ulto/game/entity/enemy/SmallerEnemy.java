@@ -10,6 +10,7 @@ public class SmallerEnemy extends Enemy{
                 Constants.SMALLER_ENEMY_HEIGHT,
                 Constants.SMALLER_ENEMY_SPEED,
                 Constants.SMALLER_ENEMY_HEALTH,
+                Constants.SMALLER_ENEMY_ARMOR,
                 Constants.SMALLER_ENEMY_REWARD);
     }
 

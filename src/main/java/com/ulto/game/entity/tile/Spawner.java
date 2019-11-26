@@ -17,7 +17,7 @@ public class Spawner extends Road implements UpdatableEntity {
 
     public Spawner(int x, int y) {
         super(x, y);
-        direction = new Point2D(0, 0);
+        direction = Point2D.ZERO;
     }
 
     @Override
