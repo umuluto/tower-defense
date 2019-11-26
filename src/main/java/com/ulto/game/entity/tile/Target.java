@@ -1,11 +1,12 @@
 package com.ulto.game.entity.tile;
 
 import com.ulto.game.GameField;
+import com.ulto.game.Updatable;
 import com.ulto.game.entity.GameEntity;
 import com.ulto.game.entity.drawer.Drawer;
 import com.ulto.game.entity.enemy.Enemy;
 
-public class Target extends Road {
+public class Target extends Road implements Updatable {
     public Target(int x, int y) {
         super(x, y, 0);
     }

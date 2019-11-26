@@ -1,8 +1,10 @@
 package com.ulto.game.entity.tower;
 
 import com.ulto.game.Constants;
+import com.ulto.game.Drawable;
 import com.ulto.game.GameField;
 import com.ulto.game.GameGrid;
+import com.ulto.game.Updatable;
 import com.ulto.game.entity.Bullet;
 import com.ulto.game.entity.GameEntity;
 import com.ulto.game.entity.enemy.Enemy;
@@ -11,7 +13,7 @@ import com.ulto.game.entity.tile.Road;
 import com.ulto.game.util.Vector;
 
 
-public abstract class Tower extends GameEntity {
+public abstract class Tower implements GameEntity, Updatable, Drawable {
     private final Vector position;
 
     private final int damage;

@@ -1,10 +1,7 @@
 package com.ulto.game;
 
-import com.ulto.game.entity.enemy.Enemy;
 import com.ulto.game.entity.tile.GameTile;
 import com.ulto.game.util.Vector;
-
-import javafx.util.Pair;
 
 public class GameGrid {
     private GameTile[][] grid = new GameTile[Constants.NUM_ROW][Constants.NUM_COL];

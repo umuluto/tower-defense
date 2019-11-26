@@ -1,17 +1,18 @@
 package com.ulto.game.entity.enemy;
 
-import java.util.ArrayList;
-
+import com.ulto.game.Drawable;
 import com.ulto.game.GameField;
-import com.ulto.game.entity.Behavior;
+import com.ulto.game.Updatable;
 import com.ulto.game.entity.Destroyable;
+import com.ulto.game.entity.EnemyCollider;
 import com.ulto.game.entity.GameEntity;
+import com.ulto.game.entity.GridCrawler;
 import com.ulto.game.entity.Movable;
-import com.ulto.game.entity.behavior.MoveBehavior;
-import com.ulto.game.entity.behavior.SeekBehavior;
+import com.ulto.game.entity.Seeker;
 import com.ulto.game.util.Vector;
 
-public abstract class Enemy extends GameEntity implements Movable, Destroyable {
+public abstract class Enemy implements GameEntity, Updatable, Drawable, Movable,
+    Seeker, EnemyCollider, GridCrawler, Destroyable {
     private Vector position;
 
     private double width;
@@ -31,10 +32,6 @@ public abstract class Enemy extends GameEntity implements Movable, Destroyable {
         this.maxSpeed = maxSpeed;
         this.health = health;
         this.reward = reward;
-        
-        behaviors = new ArrayList<>();
-        behaviors.add(new SeekBehavior());
-        behaviors.add(new MoveBehavior());
     }
 
     public Enemy(double x, double y, double width, double height,
@@ -112,9 +109,11 @@ public abstract class Enemy extends GameEntity implements Movable, Destroyable {
 
     @Override
     public void update(GameField field) {
-        for (Behavior behavior : behaviors) {
-            behavior.update(this);
-        }
+        seek(field);
+        deregister(field);
+        move(field);
+        register(field);
+        handleCollision(field);
     }
 
     @Override
@@ -124,8 +123,7 @@ public abstract class Enemy extends GameEntity implements Movable, Destroyable {
 
     @Override
     public void onDestroy(GameField field) {
-        // TODO Auto-generated method stub
-        
+        deregister(field);
     }
 
     public void onAttack(int damage) {

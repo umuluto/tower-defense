@@ -1,8 +1,8 @@
 package com.ulto.game.entity.drawer;
 
 import com.ulto.game.Constants;
+import com.ulto.game.Drawable;
 import com.ulto.game.GameField;
-import com.ulto.game.entity.Bullet;
 import com.ulto.game.entity.GameEntity;
 import com.ulto.game.entity.enemy.BossEnemy;
 import com.ulto.game.entity.enemy.NormalEnemy;
@@ -12,9 +12,6 @@ import com.ulto.game.entity.tile.Mountain;
 import com.ulto.game.entity.tile.Road;
 import com.ulto.game.entity.tile.Spawner;
 import com.ulto.game.entity.tile.Target;
-import com.ulto.game.entity.tower.MachineGunTower;
-import com.ulto.game.entity.tower.NormalTower;
-import com.ulto.game.entity.tower.SniperTower;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -26,7 +23,7 @@ public class Drawer {
     public static void batchDraw(GameField field) {
         foreground.clearRect(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         for (GameEntity e : field.getEntities()) {
-            e.draw();
+            ((Drawable)e).draw();
         }
     }
 

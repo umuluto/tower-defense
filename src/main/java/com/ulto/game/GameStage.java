@@ -8,6 +8,7 @@ import java.util.Queue;
 import java.util.Scanner;
 
 import com.ulto.game.entity.GameEntity;
+import com.ulto.game.entity.Rock;
 import com.ulto.game.entity.tile.GameTile;
 import com.ulto.game.entity.tile.Mountain;
 import com.ulto.game.entity.tile.Road;
@@ -65,19 +66,30 @@ public class GameStage {
         Queue<Pair<Integer, Integer>> queue = new LinkedList<>();
         queue.add(target);
 
-        Road currentCell, otherCell;
+        GameTile currentCell, otherCell;
         int i, j, u, v;
 
         while (!queue.isEmpty()) {
             i = queue.peek().getA();
             j = queue.poll().getB();
-            currentCell = (Road)grid.getCell(i, j);
+            currentCell = grid.getCell(i, j);
 
             for (int k = 0; k < 4; ++k) {
                 u = i + di[k];
                 v = j + dj[k];
-                if (!GameGrid.inGrid(u, v) || grid.getCell(u, v) instanceof Mountain) continue;
-                otherCell = (Road)grid.getCell(u, v);
+                if (!GameGrid.inGrid(u, v)) continue;
+
+                otherCell = grid.getCell(u, v);
+                if (otherCell instanceof Mountain) {
+                    if (otherCell.getEntities().isEmpty()) {
+                        otherCell.getEntities()
+                                    .add(new Rock(u * Constants.TILE_SIZE, 
+                                                    v * Constants.TILE_SIZE));
+                    }
+
+                    continue;                                        
+                }
+                
                 if (otherCell.getDistance() == Integer.MAX_VALUE) {
                     queue.add(new Pair<>(u, v));
                     continue;

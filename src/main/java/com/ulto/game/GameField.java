@@ -40,7 +40,7 @@ public class GameField {
         GameEntity e;
         for (int i = 0; i < oldSize; ++i) {
             e = entities.get(i);
-            e.update(this);
+            ((Updatable)e).update(this);
         }
 
         Destroyable de;
@@ -49,7 +49,6 @@ public class GameField {
             if (e instanceof Destroyable) {
                 de = (Destroyable)e;
                 if (de.isDestroyed()) {
-                    System.out.println("#");
                     de.onDestroy(this);
                     entities.remove(i--);
                 }

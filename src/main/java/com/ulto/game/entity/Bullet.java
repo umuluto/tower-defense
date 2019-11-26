@@ -1,12 +1,14 @@
 package com.ulto.game.entity;
 
 import com.ulto.game.Constants;
+import com.ulto.game.Drawable;
 import com.ulto.game.GameField;
+import com.ulto.game.Updatable;
 import com.ulto.game.entity.drawer.Drawer;
 import com.ulto.game.entity.enemy.Enemy;
 import com.ulto.game.util.Vector;
 
-public class Bullet extends GameEntity implements Destroyable {
+public class Bullet implements GameEntity, Updatable, Drawable, Destroyable {
     private Vector position;
     private int damage;
     private Enemy target;

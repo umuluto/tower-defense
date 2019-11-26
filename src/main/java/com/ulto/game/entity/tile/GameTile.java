@@ -3,11 +3,11 @@ package com.ulto.game.entity.tile;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ulto.game.GameField;
+import com.ulto.game.Drawable;
 import com.ulto.game.entity.GameEntity;
 import com.ulto.game.util.Vector;
 
-public abstract class GameTile extends GameEntity {
+public abstract class GameTile implements GameEntity, Drawable {
     private final Vector position;
     protected Vector direction = Vector.ZERO;
     protected int distance = Integer.MAX_VALUE;
@@ -55,11 +55,5 @@ public abstract class GameTile extends GameEntity {
 
     public void setEntities(List<GameEntity> entities) {
         this.entities = entities;
-    }
-
-    @Override
-    public void update(GameField field) {
-        // TODO Auto-generated method stub
-        
     }
 }

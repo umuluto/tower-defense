@@ -1,11 +1,20 @@
 package com.ulto.game.entity;
 
+import com.ulto.game.GameField;
 import com.ulto.game.util.Vector;
 
 public interface Movable {
-    public Vector getPosition();
-    public void setPosition(Vector position);
-    public Vector getVelocity();
-    public void setVelocity(Vector velocity);
-    public double getMaxSpeed();
+    Vector getPosition();
+    void setPosition(Vector position);
+    Vector getVelocity();
+    void setVelocity(Vector velocity);
+
+    default void move(GameField field) {
+        Vector position = getPosition();
+        Vector velocity = getVelocity();
+        double dt = field.getDelta();
+
+        position = position.plus(velocity.mul(dt));
+        setPosition(position);
+    }
 }

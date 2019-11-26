@@ -1,7 +1,5 @@
 package com.ulto.game;
 
-import com.ulto.game.entity.behavior.MoveBehavior;
-import com.ulto.game.entity.behavior.SeekBehavior;
 import com.ulto.game.entity.drawer.Drawer;
 import com.ulto.game.entity.tile.GameTile;
 import com.ulto.game.entity.tile.Mountain;
@@ -21,9 +19,6 @@ public class GameController extends AnimationTimer {
         stage = new GameStage(name);
         // TODO: handle exception
         field = new GameField(stage);
-
-        MoveBehavior.setField(field);
-        SeekBehavior.setField(field);
     }
 
     @Override

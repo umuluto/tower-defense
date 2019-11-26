@@ -1,42 +1,35 @@
-package com.ulto.game.entity.behavior;
+package com.ulto.game.entity;
 
 import com.ulto.game.Constants;
 import com.ulto.game.GameField;
 import com.ulto.game.GameGrid;
-import com.ulto.game.entity.Behavior;
-import com.ulto.game.entity.GameEntity;
-import com.ulto.game.entity.Movable;
 import com.ulto.game.util.Vector;
 
-public class SeekBehavior implements Behavior {
-    private static GameField field;
-    
-    public static void setField(GameField field) {
-        SeekBehavior.field = field;
-    }
+public interface Seeker {
+    Vector getPosition();
+    Vector getVelocity();
+    void setVelocity(Vector velocity);
+    double getMaxSpeed();
 
-    @Override
-    public void update(GameEntity entity) {
-        Movable movable = (Movable)entity;
+    default void seek(GameField field) {
         double dt = field.getDelta();
+        Vector velocity = getVelocity();
+        Vector force = steeringBehaviourFlowField(field);
 
-        Vector force = steeringBehaviourFlowField(movable);
-
-        Vector velocity = movable.getVelocity();
         velocity = velocity.plus(force.mul(dt));
 
         double speed = velocity.magn();
-        if (speed > movable.getMaxSpeed()) {
-            velocity = velocity.mul(movable.getMaxSpeed() / speed);
+        if (speed > getMaxSpeed()) {
+            velocity = velocity.mul(getMaxSpeed() / speed);
         }
 
-        movable.setVelocity(velocity);
+        setVelocity(velocity);
     }
 
-    private Vector steeringBehaviourFlowField(Movable movable) {
+    default Vector steeringBehaviourFlowField(GameField field) {
         GameGrid grid = field.getGrid();
 
-        Vector position = movable.getPosition();
+        Vector position = getPosition();
         int floorX = (int)position.getX();
         int floorY = (int)position.getY();
         int j = floorX / Constants.TILE_SIZE;
@@ -53,17 +46,14 @@ public class SeekBehavior implements Behavior {
         Vector bottom = f01.mul(1 - xWeight).plus(f11.mul(xWeight));
 
         double yWeight = position.getY() - floorY;
-
         Vector direction = top.mul(1 - yWeight).plus(bottom.mul(yWeight)).norm();
 
         if (Double.isNaN(direction.magn())) {
             return Vector.ZERO;
         }
 
-        Vector desiredVelocity = direction.mul(movable.getMaxSpeed());
-
-        Vector velocityChange = desiredVelocity.minus(movable.getVelocity());
-
-        return velocityChange.mul(Constants.NORMAL_ENEMY_MAX_FORCE / movable.getMaxSpeed());
+        Vector desiredVelocity = direction.mul(getMaxSpeed());
+        Vector velocityChange = desiredVelocity.minus(getVelocity());
+        return velocityChange.mul(Constants.NORMAL_ENEMY_MAX_FORCE / getMaxSpeed());
     }
 }

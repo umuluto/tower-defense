@@ -5,9 +5,10 @@ import java.util.List;
 import com.ulto.game.Constants;
 import com.ulto.game.GameField;
 import com.ulto.game.Pair;
+import com.ulto.game.Updatable;
 import com.ulto.game.entity.drawer.Drawer;
 
-public class Spawner extends Road {
+public class Spawner extends Road implements Updatable {
     private List<Pair<Integer, String>> wave;
     private double lastWaveTime = Integer.MIN_VALUE;
     private double lastSpawnTime = Integer.MIN_VALUE;
